@@ -1,5 +1,8 @@
 #!/bin/bash
- 
+
+# This script is based on the blog post and sources below.
+# Credits go to: 
+#  
 # https://gist.github.com/949831
 # http://blog.carbonfive.com/2011/05/04/automated-ad-hoc-builds-using-xcode-4/
  
@@ -10,27 +13,30 @@
 # http://www.neat.io/posts/2010/10/27/automated-ota-ios-app-distribution.html
 
 # Configuration
-# project_dir=`pwd`
+###############################
+# project_dir=`pwd` # current dir
 # environment_name="staging"
 # keychain="ci_keys"
-# keychain_password="Silverfisk"
-# workspace="TheCellar.xcodeproj/project.xcworkspace"
-# scheme="TheCellar"
-# info_plist="$project_dir/TheCellar-Info.plist"
+# keychain_password="xxxzzzyyy"
+# workspace="YourProject.xcodeproj/project.xcworkspace"
+# scheme="YourScheme" # Make sure that the sceheme is 'shared' in Xcode 4
+# info_plist="$project_dir/YourProject-Info.plist"
 # environment_plist="$environment_name.plist"
 # environment_info_plist="$environment_name-Info.plist"
-# product_name="My App $environment_name"
+# product_name="YourApp-$environment_name"
 # mobileprovision="$project_dir/ad_hoc/Wildcard_InHouse_Distribution.mobileprovision"
-# provisioning_profile="iPhone Distribution: Jayway AB"
-# build_number="$BUILD_NUMBER"
-# artifacts_url="http://Celebros.local/~ciryon" #$build_number"
+# provisioning_profile="iPhone Distribution: YourCompany"
+# build_number="$BUILD_NUMBER" # if your build server outputs a buld number
+# artifacts_url="http://www.xxx/yyy" #$build_number"
 # display_image_name="app_icon_64.png"
 # full_size_image_name="app_icon_512.png"
 #
 # source xcodebuild.sh
 
-# Copy the above to your XCode folder as a new script and uncomment
-#
+# Copy the above configuration to your XCode project folder as a new script and uncomment
+# Make sure that xcodebuild.sh is in your path
+
+
 ###############################
 ## Don't edit below
 ###############################
