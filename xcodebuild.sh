@@ -26,6 +26,7 @@
 # product_name="YourApp-$environment_name"
 # mobileprovision="$project_dir/ad_hoc/Wildcard_InHouse_Distribution.mobileprovision"
 # provisioning_profile="iPhone Distribution: YourCompany"
+# web_root="/public/Apps"
 # build_number="$BUILD_NUMBER" # if your build server outputs a buld number
 # artifacts_url="http://www.xxx/yyy" #$build_number"
 # display_image_name="app_icon_64.png"
@@ -243,15 +244,15 @@ EOF
 }
 
 function copy_to_web_server() {
-	rm -rf "/public/Apps/$product_name"
-	mkdir "/public/Apps/$product_name"
-	cp -v "$project_app.plist" "/public/Apps/$product_name/$project_app.plist" || failed plistcopy
-	cp -v "$project_app.ipa" "/public/Apps/$product_name/$project_app.ipa"   || failed ipacopy
+	rm -rf "$web_root/$product_name"
+	mkdir "$web_root/$product_name"
+	cp -v "$project_app.plist" "$web_root/$product_name/$project_app.plist" || failed plistcopy
+	cp -v "$project_app.ipa" "$web_root/$product_name/$project_app.ipa"   || failed ipacopy
 	
 	local display_image=$(find $project_dir |grep $display_image_name  -m 1)
 	local full_size_image_name=$(find $project_dir |grep $full_size_image_name -m 1)
-	cp -v "$display_image" "/public/Apps/$product_name/icon.png" || failed imagecopy
-	cp -v "$full_size_image_name" "/public/Apps/$product_name/icon_large.png" || failed imagecopy
+	cp -v "$display_image" "$web_root/$product_name/icon.png" || failed imagecopy
+	cp -v "$full_size_image_name" "$web_root/$product_name/icon_large.png" || failed imagecopy
 }
  
 echo "**** Validate Keychain"
