@@ -127,7 +127,8 @@ function build_app()
  
 #  disabled overriding PRODUCT_NAME, setting applies to all built targets in Xcode 4 which renames static library target dependencies and breaks linking
 #  xcodebuild -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphoneos -configuration Release clean build PRODUCT_NAME="$product_name" >| xcodebuild_output
-  xcodebuild -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphoneos -configuration Release clean build >| xcodebuild_output
+ 
+xcodebuild -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphoneos -configuration Release clean build >| xcodebuild_output
   if [ $? -ne 0 ]
   then
     tail -n20 xcodebuild_output
@@ -249,8 +250,8 @@ function copy_to_web_server() {
 	cp -v "$project_app.plist" "$web_root/$product_name/$project_app.plist" || failed plistcopy
 	cp -v "$project_app.ipa" "$web_root/$product_name/$project_app.ipa"   || failed ipacopy
 	
-	local display_image=$(find $project_dir |grep $display_image_name  -m 1)
-	local full_size_image_name=$(find $project_dir |grep $full_size_image_name -m 1)
+	local display_image=$(find $project_dir |grep $display_image_name  -m 2 |grep -v $project_app.app)
+	local full_size_image_name=$(find $project_dir |grep $full_size_image_name -m 2 |grep -v $project_app.app)
 	cp -v "$display_image" "$web_root/$product_name/icon.png" || failed imagecopy
 	cp -v "$full_size_image_name" "$web_root/$product_name/icon_large.png" || failed imagecopy
 }
