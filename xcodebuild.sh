@@ -111,9 +111,9 @@ fi
  
   #extract settings from the Info.plist file
   info_plist_domain=$(ls $info_plist | sed -e 's/\.plist//')
-  short_version_string=$(defaults read "$info_plist_domain" CFBundleShortVersionString)
+  bundle_version=$(defaults read "$info_plist_domain" CFBundleVersion)
   bundle_identifier=$(defaults read "$info_plist_domain" CFBundleIdentifier)
-  echo "Environment set to $bundle_identifier at version $short_version_string"
+  echo "Environment set to $bundle_identifier at version $bundle_version"
 }
  
 function build_app()
@@ -229,7 +229,7 @@ function build_ota_plist()
         <key>bundle-identifier</key>
         <string>$bundle_identifier</string>
         <key>bundle-version</key>
-        <string>$short_version_string $build_number</string>
+        <string>$bundle_version</string>
         <key>kind</key>
         <string>software</string>
         <key>subtitle</key>
