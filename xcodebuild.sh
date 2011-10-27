@@ -245,8 +245,9 @@ EOF
 }
 
 function copy_to_web_server() {
-	rm -rf "$web_root/$product_name"
-	mkdir "$web_root/$product_name"
+	echo "Copying $product_name to $web_root..."
+	rm -rf "$web_root/$product_name" || failed rmdir
+	mkdir "$web_root/$product_name"  || failed mkdir
 	cp -v "$project_app.plist" "$web_root/$product_name/$project_app.plist" || failed plistcopy
 	cp -v "$project_app.ipa" "$web_root/$product_name/$project_app.ipa"   || failed ipacopy
 	
