@@ -127,7 +127,6 @@ function build_app()
  
 #  disabled overriding PRODUCT_NAME, setting applies to all built targets in Xcode 4 which renames static library target dependencies and breaks linking
 #  xcodebuild -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphoneos -configuration Release clean build PRODUCT_NAME="$product_name" >| xcodebuild_output
- 
 xcodebuild -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphoneos -configuration Release clean build >| xcodebuild_output
   if [ $? -ne 0 ]
   then
@@ -190,7 +189,7 @@ function verify_app()
  
 function build_ota_plist()
 {
-  echo "Generating $project_app.plist"
+  echo "Generating $project_app.plist for bundle version $bundle_version and bundle identifier $bundle_identifier"
   cat << EOF > $project_app.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -245,14 +244,14 @@ EOF
 }
 
 function copy_to_web_server() {
-	echo "Copying $product_name to $web_root..."
+	echo "Copying $product_name to $web_root"
 	rm -rf "$web_root/$product_name" || failed rmdir
 	mkdir "$web_root/$product_name"  || failed mkdir
 	cp -v "$project_app.plist" "$web_root/$product_name/$project_app.plist" || failed plistcopy
 	cp -v "$project_app.ipa" "$web_root/$product_name/$project_app.ipa"   || failed ipacopy
-	
-	local display_image=$(find $project_dir |grep $display_image_name  -m 2 |grep -v $project_app.app)
-	local full_size_image_name=$(find $project_dir |grep $full_size_image_name -m 2 |grep -v $project_app.app)
+
+	local display_image=$(find $project_dir |grep /$display_image_name  -m 2 |grep -v $project_app)
+	local full_size_image_name=$(find $project_dir |grep /$full_size_image_name -m 2 |grep -v $project_app)
 	cp -v "$display_image" "$web_root/$product_name/icon.png" || failed imagecopy
 	cp -v "$full_size_image_name" "$web_root/$product_name/icon_large.png" || failed imagecopy
 }
