@@ -265,11 +265,11 @@ echo
 echo "**** Describe Workspace"
 describe_workspace
 echo
-echo "**** Set Environment"
-set_environment
-echo
 echo "**** Increment Bundle Version"
 increment_version
+echo
+echo "**** Set Environment"
+set_environment
 echo
 echo "**** Build"
 build_app
