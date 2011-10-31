@@ -212,7 +212,7 @@ function build_ota_plist()
           <key>needs-shine</key>
           <true/>
           <key>url</key>
-          <string>$artifacts_url/icon_large.png</string>
+          <string>$artifacts_url/$project_app_large.png</string>
         </dict>
         <dict>
           <key>kind</key>
@@ -220,7 +220,7 @@ function build_ota_plist()
           <key>needs-shine</key>
           <true/>
           <key>url</key>
-          <string>$artifacts_url/icon.png</string>
+          <string>$artifacts_url/$project_app.png</string>
         </dict>
       </array>
       <key>metadata</key>
