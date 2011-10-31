@@ -204,7 +204,7 @@ function build_ota_plist()
           <key>kind</key>
           <string>software-package</string>
           <key>url</key>
-          <string>$artifacts_url/$project_app.ipa</string>
+          <string>$artifacts_url/$product_name/$project_app.ipa</string>
         </dict>
         <dict>
           <key>kind</key>
@@ -212,7 +212,7 @@ function build_ota_plist()
           <key>needs-shine</key>
           <true/>
           <key>url</key>
-          <string>$artifacts_url/$project_app_large.png</string>
+          <string>$artifacts_url/$product_name/icon_large.png</string>
         </dict>
         <dict>
           <key>kind</key>
@@ -220,7 +220,7 @@ function build_ota_plist()
           <key>needs-shine</key>
           <true/>
           <key>url</key>
-          <string>$artifacts_url/$project_app.png</string>
+          <string>$artifacts_url/$product_name/icon.png</string>
         </dict>
       </array>
       <key>metadata</key>
