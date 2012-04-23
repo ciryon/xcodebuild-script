@@ -84,7 +84,7 @@ xcodebuild  -arch i386 -parallelizeTargets -jobs 4 -verbose -workspace "$workspa
 function run_app() {
 rm -f /tmp/iossim-output
 ios-sim launch "$full_path_to_app" --stdout /tmp/iossim-output --stderr /tmp/iossim-output --exit --family "$device_name"
-
+open -a /Applications/Utilities/Console.app /tmp/iossim-output
 }
 
 echo

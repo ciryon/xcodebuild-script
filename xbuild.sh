@@ -40,7 +40,7 @@ function build_app()
   #build the app
  
 #  disabled overriding PRODUCT_NAME, setting applies to all built targets in Xcode 4 which renames static library target dependencies and breaks linking
-xcodebuild  -arch i386 -parallelizeTargets -jobs 4 -verbose -workspace "$workspace" -scheme "$scheme" -sdk iphonesimulator -configuration Debug build
+xcodebuild  -arch i386 -parallelizeTargets -jobs 4 -workspace "$workspace" -scheme "$scheme" -sdk iphonesimulator -configuration Debug build
   if [ $? -ne 0 ]
   then
     failed xcodebuild
