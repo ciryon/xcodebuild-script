@@ -1,0 +1,28 @@
+*Introduction*
+
+These scripts attempt to do the following without any configuration at all:
+
+* Quickly build your XCode project from command line and show error output if it fails
+* Build and run iOS app in iOS Simulator (using ios-sim)
+* Build and run unit tests (especially Kiwi) with easy-to-read colored output and test summary
+
+*Credits:* 
+https://gist.github.com/3349345
+https://gist.github.com/949831
+http://blog.carbonfive.com/2011/05/04/automated-ad-hoc-builds-using-xcode-4/
+
+
+*Installation:*
+
+* Put xbuild.sh and run_unit_tests.rb somewhere in your path.
+* Install ios-sim (gem install ios-sim) if you want to run apps in simulator
+* If you want to run unit tests, gem install colored pathname open4
+* For unit tests you also need to prepare your XCode project (see instructions in links above)
+
+
+*Usage:*
+
+* Just do a build: xbuild.sh
+* Build and run:   xbuild.sh run
+* Build and test:  xbuild.sh test
+
